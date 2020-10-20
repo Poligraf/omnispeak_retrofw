@@ -243,10 +243,19 @@ static void INL_SetupKbdControls()
 #ifdef EXTRA_KEYBOARD_OPTIONS
 	in_kbdControls.status = IN_SC_Enter;
 #endif
-#ifdef QUICKSAVE_ENABLED
-	in_kbdControls.quickSave = IN_SC_F5;
-	in_kbdControls.quickLoad = IN_SC_F9;
+#ifndef DINGOO
+	#ifdef QUICKSAVE_ENABLED
+		in_kbdControls.quickSave = IN_SC_F5;
+		in_kbdControls.quickLoad = IN_SC_F9;
+	#endif
 #endif
+#ifdef DINGOO
+	#ifdef QUICKSAVE_ENABLED
+		in_kbdControls.quickSave = IN_SC_Tab; //Tab is left trigger on retrofw
+		in_kbdControls.quickLoad = IN_SC_Backspace; // backspace is right trigger on retrofw
+	#endif
+#endif
+
 	in_kbdControls.up = IN_SC_UpArrow;
 	in_kbdControls.down = IN_SC_DownArrow;
 	in_kbdControls.left = IN_SC_LeftArrow;

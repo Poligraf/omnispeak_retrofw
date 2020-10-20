@@ -198,7 +198,7 @@ ifeq ($(DEBUG), 1)
 		# because SDL_LIBS usually contains -mwindows
 	endif
 else
-	CXXFLAGS += -Ofast --fast-math
+	CXXFLAGS += -Ofast --fast-math -DDINGOO
 endif	
 
 # set vanilla mode
