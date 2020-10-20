@@ -436,8 +436,17 @@ void save_savegame_item(US_CardItem *item)
 	const char *fname;
 	int error;
 
+	#ifndef DINGOO
 	footer_str[2] = "Type name";
 	footer_str[1] = "Enter accepts";
+	#endif
+
+
+	#ifdef DINGOO
+	footer_str[2] = "";
+	footer_str[1] = "Start accepts save";
+	#endif
+
 	US_DrawCards();
 
 	i = item - ck_us_loadSaveMenuItems;
@@ -450,9 +459,16 @@ void save_savegame_item(US_CardItem *item)
 	e->printXOffset = ck_currentEpisode->printXOffset;
 	n = US_LineInput(item->x + 2, item->y + 2, e->name, (e->used ? e->name : NULL), 1, 32, 138);
 
+
+	#ifndef DINGOO
 	/* If they entered no name, give a default */
 	if (strlen(e->name) == 0)
 		strcpy(e->name, "Untitled");
+	#endif
+
+	#ifdef DINGOO
+	strcpy(e->name, "Saved Game");
+	#endif
 
 	/* If the input was not canceled */
 	if (n != 0)
