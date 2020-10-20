@@ -69,7 +69,7 @@ endef
 # platform selection
 
 DEFAULT_STATIC = 0
-DEFAULT_RENDERER = sdl2gl
+DEFAULT_RENDERER = sdl1
 DEFAULT_BUILDASCPP = 0
 DEFAULT_LOCAL_SDL = 0
 BINDIR =
@@ -170,8 +170,8 @@ ifeq ($(CLANG), 1)
 		CXXFLAGS += -Wno-deprecated
 	endif
 else
-	CXX = g++
-	CC = gcc
+	CXX = mipsel-linux-g++
+	CC = mipsel-linux-gcc
 endif
 
 # set C or C++ compiler
